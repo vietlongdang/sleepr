@@ -25,9 +25,9 @@ export class PaymentsService {
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
       currency: 'usd',
-      // payment_method: 'pm_card_visa',
-      // confirm: true,
-      // payment_method_types: ['card'],
+      payment_method: 'pm_card_visa',
+      confirm: true,
+      payment_method_types: ['card'],
     });
 
     this.notificationsService.emit('notify_email', {
