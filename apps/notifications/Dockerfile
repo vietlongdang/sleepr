@@ -1,4 +1,4 @@
-FROM node:alpine AS development
+FROM node:alpine As development
 
 WORKDIR /usr/src/app
 
@@ -18,7 +18,7 @@ RUN cd apps/notifications && pnpm install
 
 RUN pnpm run build notifications
 
-FROM node:alpine AS production
+FROM node:alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}

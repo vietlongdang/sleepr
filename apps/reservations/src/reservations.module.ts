@@ -50,10 +50,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       {
         name: PAYMENTS_SERVICE,
         useFactory: (configService: ConfigService) => ({
-          transport: Transport.TCP,
+          transport: Transport.RMQ,
           options: {
-            host: configService.get('PAYMENTS_HOST'),
-            port: configService.get('PAYMENTS_PORT'),
+            urls: [configService.getOrThrow<string>('RABBITMQ_URI')],
+            queue: 'payments',
           },
         }),
         inject: [ConfigService],
