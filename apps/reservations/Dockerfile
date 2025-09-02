@@ -1,4 +1,4 @@
-FROM node:alpine AS development
+FROM node:alpine As development
 
 WORKDIR /usr/src/app
 
@@ -16,7 +16,7 @@ COPY libs libs
 
 RUN pnpm run build reservations
 
-FROM node:alpine AS production
+FROM node:alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}

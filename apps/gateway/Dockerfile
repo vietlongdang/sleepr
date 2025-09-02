@@ -9,14 +9,12 @@ COPY nest-cli.json nest-cli.json
 
 RUN npm install -g pnpm
 
-RUN pnpm install
-
-COPY apps/notifications apps/notifications
+COPY apps/gateway apps/gateway
 COPY libs libs
 
-RUN cd apps/notifications && pnpm install 
+RUN pnpm install -r 
 
-RUN pnpm run build notifications
+RUN pnpm run build gateway
 
 FROM node:alpine as production
 
@@ -33,6 +31,5 @@ RUN npm install -g pnpm
 RUN pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
-COPY proto proto
 
-CMD ["node", "dist/apps/notifications/main"]
+CMD ["node", "dist/apps/gateway/main"]

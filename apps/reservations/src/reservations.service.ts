@@ -27,7 +27,7 @@ export class ReservationsService {
           this.reservationsRepository.create({
             ...createReservationDto,
             invoiceId: res.id,
-            client_secret: res.client_secret,
+            // client_secret: res.client_secret,
             timestamp: new Date(),
             userId,
           })
