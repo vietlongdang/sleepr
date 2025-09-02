@@ -10,7 +10,7 @@ import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) {}
+  constructor(private readonly usersRepository: UsersRepository) { }
 
   async create(createUserDto: CreateUserDto) {
     await this.validateCreateUserDto(createUserDto);
@@ -41,5 +41,9 @@ export class UsersService {
 
   async getUser(getUserDto: GetUserDto) {
     return this.usersRepository.findOne(getUserDto);
+  }
+
+  async findAll() {
+    return this.usersRepository.find({});
   }
 }

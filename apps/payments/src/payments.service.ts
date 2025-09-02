@@ -7,7 +7,7 @@ import { PaymentsCreateChargeDto } from './dto/payments-create-charge.dto';
 
 @Injectable()
 export class PaymentsService {
-private notificationsService: NotificationsServiceClient;
+  private notificationsService: NotificationsServiceClient;
 
   private readonly stripe: Stripe;
 
@@ -44,8 +44,13 @@ private notificationsService: NotificationsServiceClient;
         email,
         text: `Your payment of $${amount} has completed successfully.`,
       })
-      .subscribe(() => {});
+      .subscribe(() => { });
 
     return paymentIntent;
+  }
+
+  async getPayments() {
+    const payments = await this.stripe.paymentIntents.list();
+    return payments.data;
   }
 }
